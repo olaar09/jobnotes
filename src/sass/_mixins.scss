@@ -1,0 +1,69 @@
+@mixin text {
+  color: $color-text;
+  cursor: pointer;
+  font-size: 14px;
+  margin: 0;
+  padding: 0 0 16px;
+  line-height: 16px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+@mixin avatar($height) {
+  border-radius: 50%;
+  overflow: hidden;
+  height: $height;
+
+  box-shadow: 0 1px 4px 0 rgba(98, 103, 109, 0.2);
+  cursor: pointer;
+
+  -webkit-transition: -webkit-box-shadow 0.2s ease;
+  transition: box-shadow 0.2s ease;
+}
+
+@mixin text-bold {
+  color: $color-text;
+  font-family: font-bold;
+  color: $color-text;
+  line-height: 1;
+  font-size: 15px;
+}
+
+@mixin text-regular {
+  color: $color-text;
+  font-family: font-medium;
+  color: $color-text;
+  line-height: 1;
+  font-size: 15px;
+}
+
+@mixin section {
+  padding: 5% 15% 10% 15%;
+}
+
+@mixin card {
+  padding: 20px;
+  margin-bottom: 20px;
+  height: 180px;
+  border: 1px solid rgb(235, 235, 235);
+  transition: opacity 200ms ease-in;
+}
+
+@mixin card-effect {
+  border: 1px solid rgb(235, 235, 235);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+@mixin loadingEffect {
+  animation-duration: 1.25s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-name: placeHolderShimmer;
+  animation-timing-function: linear;
+  background: #f6f6f6;
+  background: linear-gradient(to right, #f6f6f6 8%, #f0f0f0 18%, #f6f6f6 33%);
+  background-size: 800px 104px;
+  position: relative;
+}

@@ -1,0 +1,54 @@
+$color-black: #000;
+$color-white: #fff;
+$color-primary: #ff8185;
+$color-secondary: #2164f3;
+$color-third: #ff5a1f;
+$color-red: #eb4962;
+$color-grey: #cccccc;
+$color-bg: #fff; //#fafafa;
+$color-active: $color-primary;
+$color-hr: rgb(242, 242, 242);
+$color-orange: #f5a623;
+$color-yellow: #cfbb00;
+$color-green: #7ed321;
+$color-blue-outline: rgb(41, 91, 230);
+$color-black-light: rgb(111, 111, 111);
+$color-text-light: #62676d;
+$color-text-darker: #3d4045;
+$color-text-blue: #295be6;
+$color-text: #494949;
+$color-text-dark: #474747;
+$font-medium: gotham-medium;
+$font-bold: gotham-bold;
+$font-regular: gotham-regular;
+
+$breakpoint-xs: 576px;
+$breakpoint-md: 756px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+
+// import fonts // use absolute path for this.
+@font-face {
+  font-family: 'font-medium';
+  src: url(/fonts/Cereal-Medium.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: 'font-regular';
+  src: url(/fonts/Cereal-Regular.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: 'font-bold';
+  src: url(/fonts/Cereal-Bold.woff2) format('woff2');
+}
+
+// Animation
+@keyframes placeHolderShimmer {
+  0% {
+    background-position: -468px 0;
+  }
+  100% {
+    background-position: 468px 0;
+  }
+}

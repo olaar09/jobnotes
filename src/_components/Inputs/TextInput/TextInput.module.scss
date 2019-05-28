@@ -1,0 +1,13 @@
+@import '../../../sass/variables';
+
+.inputContainer {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.input {
+  border-radius: 0;
+  height: 50px;
+  border: 1px solid rgb(235, 235, 235);
+  -webkit-transition: -webkit-box-shadow 0.2s ease;
+  transition: box-shadow 0.2s ease;
+}

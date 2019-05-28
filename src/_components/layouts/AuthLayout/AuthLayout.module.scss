@@ -1,0 +1,25 @@
+@import '../../../sass/variables';
+
+.layout {
+  width: 100%;
+}
+
+.contentContainer {
+  float: none !important;
+  margin: auto;
+  padding: 5px;
+  @media screen and (min-width: $breakpoint-lg) {
+    transform: translateY(100%);
+  }
+  @media screen and (max-width: $breakpoint-xs) {
+    transform: translateY(30%);
+  }
+  @media screen and (min-width: $breakpoint-md) {
+    transform: translateY(100%);
+  }
+}
+
+.title {
+  text-align: center;
+  font-size: 1.2em;
+}
