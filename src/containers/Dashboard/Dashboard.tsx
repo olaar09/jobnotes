@@ -10,8 +10,6 @@ import {JobModal} from './Components/JobModal/JobModal';
 
 class Dashboard extends Component {
   state = {
-    email: undefined,
-    password: undefined,
     profileModalVisible: false,
     jobModalVisible: false,
   };
@@ -41,23 +39,18 @@ class Dashboard extends Component {
   };
 
   render(): ReactNode {
-    const {profileModalVisible, jobModalVisible} = this.state;
+    console.log();
+    let {profileModalVisible, jobModalVisible} = this.state;
     return (
-      <DashboardLayout>
-        <Header
-          onViewProfile={this.showProfileModal}
-          onEditProfile={this.showProfileModal}
-          onAddNewJob={this.showJobModal}
-          onLogout={this.showProfileModal}
-        />
-        <JobModal
-          hideModal={this.hideJobModal}
-          modalVisible={jobModalVisible}
-        />
-        <ProfileModal
-          hideModal={this.hideProfileModal}
-          modalVisible={profileModalVisible}
-        />
+      <DashboardLayout
+        hideProfileModal={this.hideProfileModal}
+        hideJobModal={this.hideJobModal}
+        showProfileModal={this.showProfileModal}
+        showJobModal={this.showJobModal}
+        profileModalVisible={profileModalVisible}
+        jobModalVisible={jobModalVisible}
+      >
+        <div> Hello world</div>
       </DashboardLayout>
     );
   }

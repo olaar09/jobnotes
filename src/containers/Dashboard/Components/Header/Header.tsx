@@ -25,31 +25,33 @@ export const Header = (props: HeaderProps) => {
   );
 
   return (
-    <Row className={styles.headerContainer}>
-      <Col lg={4} sm={24} xs={24} md={24}>
-        <h3 className={styles.title}>TrakJob</h3>
-      </Col>
-      <Col className={styles.columnContainer} lg={8} sm={24} xs={24} md={12}>
-        <MenuButton
-          onClick={props.onEditProfile}
-          icon="edit"
-          text="Edit profile"
-        />
-        <MenuButton
-          onClick={props.onAddNewJob}
-          icon="plus"
-          text="New Application"
-        />
-      </Col>
+    <div className={styles.headerContainerOut}>
+      <Row className={styles.headerContainer}>
+        <Col lg={4} sm={24} xs={24} md={24}>
+          <h3 className={styles.title}>TrakJob</h3>
+        </Col>
+        <Col className={styles.columnContainer} lg={8} sm={24} xs={24} md={12}>
+          <MenuButton
+            onClick={props.onEditProfile}
+            icon="edit"
+            text="Edit profile"
+          />
+          <MenuButton
+            onClick={props.onAddNewJob}
+            icon="plus"
+            text="New Application"
+          />
+        </Col>
 
-      <Col
-        className={cssmodulejoin(styles.columnContainer, styles.rightColumn)}
-        lg={12}
-        xs={12}
-        md={12}
-      >
-        <DropdownBtn icon="user" text="Agboola yusuf Ol.." menu={menu} />
-      </Col>
-    </Row>
+        <Col
+          className={cssmodulejoin(styles.columnContainer, styles.rightColumn)}
+          lg={12}
+          xs={12}
+          md={12}
+        >
+          <DropdownBtn icon="user" text="Agboola yusuf Ol.." menu={menu} />
+        </Col>
+      </Row>
+    </div>
   );
 };
