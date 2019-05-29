@@ -5,17 +5,17 @@ import React from 'react';
 import {cssmodulejoin} from 'cssmodulejoin';
 import {FullScreenModal} from '_components/Modals/FullScreen/FullscreenModal';
 
-interface ProfileModal {
+interface JobModalProps {
   modalVisible: boolean;
   hideModal: () => void;
 }
 
-export const ProfileModal = (props: ProfileModal) => {
+export const JobModal = (props: JobModalProps) => {
   return (
     <FullScreenModal
       visible={props.modalVisible}
       handleCancel={props.hideModal}
-      title="Your Profile"
+      title="Add New Job"
     >
       <h1>Hello</h1>
     </FullScreenModal>

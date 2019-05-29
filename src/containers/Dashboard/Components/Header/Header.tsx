@@ -5,14 +5,14 @@ import React from 'react';
 import {cssmodulejoin} from 'cssmodulejoin';
 import styles from './Header.module.scss';
 
-interface Header {
+interface HeaderProps {
   onEditProfile: (event: any) => void;
   onAddNewJob: (event: any) => void;
   onViewProfile: (event: any) => void;
   onLogout: (event: any) => void;
 }
 
-export const Header = (props: Header) => {
+export const Header = (props: HeaderProps) => {
   const menu = (
     <Menu>
       <Menu.Item>
