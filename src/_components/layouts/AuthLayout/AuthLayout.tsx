@@ -11,7 +11,7 @@ export const AuthLayout = ({
 }) => {
   return (
     <Row className={styles['layout']}>
-      <Col className={styles['contentContainer']} xs={24} md={18} lg={12}>
+      <Col className={styles['contentContainer']} xs={24} md={18} lg={8}>
         <h2 className={styles.title}>{title}</h2>
         {children}
       </Col>

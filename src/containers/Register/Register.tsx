@@ -10,9 +10,7 @@ class Register extends Component {
       <AuthLayout title="Register">
         <Row>
           <Col>
-            <TextInput />
-            <TextInput />
-            <TextInput />
+            
             <CButton />
           </Col>
         </Row>
@@ -21,4 +19,4 @@ class Register extends Component {
   }
 }
 
-export default Login;
+export default Register;
