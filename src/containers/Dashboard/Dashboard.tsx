@@ -5,8 +5,7 @@ import {
   onChangeModalVisibility,
   onChangeInputHandler,
 } from 'cpackages/OnChangeHandler';
-import {ProfileModal} from './Components/ProfileModal/ProfileModal';
-import {JobModal} from './Components/JobModal/JobModal';
+import {JobView} from './Components/JobView/JobView';
 
 class Dashboard extends Component {
   state = {
@@ -50,7 +49,7 @@ class Dashboard extends Component {
         profileModalVisible={profileModalVisible}
         jobModalVisible={jobModalVisible}
       >
-        <div> Hello world</div>
+        <JobView />
       </DashboardLayout>
     );
   }
