@@ -1,16 +1,11 @@
-import React, {
-  Component,
-  ReactNode,
-  ChangeEventHandler,
-  ChangeEvent,
-} from 'react';
+import React, {Component, ReactNode, ChangeEvent} from 'react';
 import {Col, Row} from 'antd';
 import {TextInput} from '_components/Inputs/TextInput/TextInput';
 import {CButton} from '_components/Buttons/CButton/CButton';
 import {AuthLayout} from '_components/layouts/AuthLayout/AuthLayout';
 import INPUT_TYPES from 'html-inputtypes';
-import {AnchorButton} from '../../_components/Buttons/AnchorButton/AnchorButton';
-import styles from './login.module.scss';
+import {AnchorButton} from '_components/Buttons/AnchorButton/AnchorButton';
+import styles from '../auth.module.scss';
 
 class Login extends Component {
   state = {

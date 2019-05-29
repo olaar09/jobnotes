@@ -1,0 +1,23 @@
+@import '../../../sass/variables';
+
+.layout {
+  width: 100%;
+  border: 1px solid rgb(235, 235, 235);
+  box-shadow: 0 2px 8px #f0f1f2;
+}
+
+.contentContainer {
+  float: none !important;
+  margin: auto;
+  padding: 20px;
+  @media screen and (min-width: $breakpoint-lg) {
+    border-radius: 4px;
+    //  transform: translateY(100%);
+  }
+  @media screen and (max-width: $breakpoint-xs) {
+    // transform: translateY(0%);
+  }
+  @media screen and (min-width: $breakpoint-md) {
+    // transform: translateY(0%);
+  }
+}

@@ -1,0 +1,20 @@
+.headerContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .columnContainer {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    .title {
+      color: '#000';
+      font-weight: 900;
+      margin-right: 30;
+    }
+  }
+  .rightColumn {
+    justify-content: flex-end !important;
+  }
+}

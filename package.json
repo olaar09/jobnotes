@@ -8,6 +8,7 @@
     "@types/react": "16.8.18",
     "@types/react-dom": "16.8.4",
     "antd": "^3.19.1",
+    "cssmodulejoin": "^1.0.3",
     "html-inputtypes": "^1.0.0",
     "node-sass": "^4.12.0",
     "react": "^16.8.6",
