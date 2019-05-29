@@ -1,14 +1,14 @@
 import React, {ChangeEvent, FocusEvent} from 'react';
-import {Input, Select, Icon} from 'antd';
+import {Input} from 'antd';
 import styles from './TextInput.module.scss';
 
 interface InputParams {
   placeholder: string;
   type: string;
   defaultValue?: string;
-  onFocus?: (event: FocusEvent<HTMLInputElement>) => void;
+  onFocus?: (event: FocusEvent<Element>) => void;
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
-  value: string | number;
+  value: string | number | undefined;
 }
 
 export const TextInput = (props: InputParams) => {

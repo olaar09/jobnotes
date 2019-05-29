@@ -1,8 +1,8 @@
 @import '../../../sass/variables';
 
 .inputContainer {
-  margin-top: 5px;
-  margin-bottom: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 .input {
   border-radius: 4px;
@@ -11,6 +11,7 @@
   -webkit-transition: -webkit-box-shadow 0.2s ease;
   transition: box-shadow 0.2s ease;
   outline: 0 none;
+  font-weight: 700;
   &:hover {
     border: 1px solid rgb(235, 235, 235);
   }

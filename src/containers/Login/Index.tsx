@@ -1,18 +1,36 @@
-import React, {Component, ReactNode} from 'react';
+import React, {
+  Component,
+  ReactNode,
+  ChangeEventHandler,
+  ChangeEvent,
+} from 'react';
 import {Col, Row} from 'antd';
 import {TextInput} from '_components/Inputs/TextInput/TextInput';
-import {CButton} from '_components/Buttons/CButton';
+import {CButton} from '_components/Buttons/CButton/CButton';
 import {AuthLayout} from '_components/layouts/AuthLayout/AuthLayout';
 import INPUT_TYPES from 'html-inputtypes';
+import {AnchorButton} from '../../_components/Buttons/AnchorButton/AnchorButton';
+import styles from './login.module.scss';
 
 class Login extends Component {
   state = {
-    email: 'default',
-    password: '****',
+    email: undefined,
+    password: undefined,
   };
-  onChangeEmail = () => {};
 
-  onChangePassword = () => {};
+  onChangeHandler = (field: string, event: ChangeEvent<HTMLInputElement>) => {
+    this.setState({
+      [field]: event.target.value,
+    });
+  };
+
+  onChangeEmail = (event: ChangeEvent<HTMLInputElement>) => {
+    this.onChangeHandler('email', event);
+  };
+
+  onChangePassword = (event: ChangeEvent<HTMLInputElement>) => {
+    this.onChangeHandler('password', event);
+  };
 
   render(): ReactNode {
     const {email, password} = this.state;
@@ -32,7 +50,14 @@ class Login extends Component {
               placeholder="Enter your password"
               onChange={this.onChangePassword}
             />
-            <CButton />
+            <div className={styles.actionsContainer}>
+              <AnchorButton
+                text="Forgot password"
+                link="https://www.google.com"
+                onClick={() => {}}
+              />
+              <CButton text="Login" />
+            </div>
           </Col>
         </Row>
       </AuthLayout>
