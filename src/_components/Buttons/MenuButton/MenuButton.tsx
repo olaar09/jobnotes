@@ -5,12 +5,18 @@ import styles from './MenuButton.module.scss';
 interface PropTypes {
   text: string;
   icon: string;
+  onClick: (event: any) => void;
 }
 
 export const MenuButton = (props: PropTypes) => {
   return (
     <div>
-      <Button className={styles.button} shape="round" icon={props.icon}>
+      <Button
+        onClick={props.onClick}
+        className={styles.button}
+        shape="round"
+        icon={props.icon}
+      >
         {props.text}
       </Button>
     </div>

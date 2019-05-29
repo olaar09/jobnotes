@@ -1,35 +1,52 @@
 import React, {Component, ReactNode, ChangeEvent} from 'react';
-import {Col, Row, Dropdown, Menu, Button} from 'antd';
 import {DashboardLayout} from '_components/layouts/DashboardLayout/DashboardLayout';
-import {MenuButton} from '_components/Buttons/MenuButton/MenuButton';
-import {DropdownBtn} from '../../_components/Buttons/MenuButton/DropdownBtn';
 import {Header} from './Components/Header/Header';
+
+import {FullScreenModal} from '_components/Modals/FullScreen/FullscreenModal';
+import {
+  onChangeModalVisibility,
+  onChangeInputHandler,
+} from 'cpackages/OnChangeHandler';
 
 class Dashboard extends Component {
   state = {
     email: undefined,
     password: undefined,
+    profileModalVisible: false,
   };
 
-  onChangeHandler = (field: string, event: ChangeEvent<HTMLInputElement>) => {
-    this.setState({
-      [field]: event.target.value,
-    });
+  hideProfileModal = () => {
+    onChangeModalVisibility('profileModalVisible', false, this);
+  };
+
+  showProfileModal = () => {
+    onChangeModalVisibility('profileModalVisible', true, this);
   };
 
   onChangeEmail = (event: ChangeEvent<HTMLInputElement>) => {
-    this.onChangeHandler('email', event);
+    onChangeInputHandler('email', event, this);
   };
 
   onChangePassword = (event: ChangeEvent<HTMLInputElement>) => {
-    this.onChangeHandler('password', event);
+    onChangeInputHandler('password', event, this);
   };
 
   render(): ReactNode {
-    const {email, password} = this.state;
     return (
       <DashboardLayout>
-        <Header />
+        <Header
+          onViewProfile={this.showProfileModal}
+          onEditProfile={this.showProfileModal}
+          onAddNewJob={this.showProfileModal}
+          onLogout={this.showProfileModal}
+        />
+        <FullScreenModal
+          visible={this.state.profileModalVisible}
+          handleCancel={this.hideProfileModal}
+          title="Fullscreen"
+        >
+          <h1>Hello</h1>
+        </FullScreenModal>
       </DashboardLayout>
     );
   }
