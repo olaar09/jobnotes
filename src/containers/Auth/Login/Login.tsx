@@ -6,8 +6,13 @@ import {AuthLayout} from '_components/layouts/AuthLayout/AuthLayout';
 import INPUT_TYPES from 'html-inputtypes';
 import {AnchorButton} from '_components/Buttons/AnchorButton/AnchorButton';
 import styles from '../auth.module.scss';
+import {FormattedMessage} from 'react-intl';
+import {withRouter} from 'react-router';
+import {RouterProps} from 'interfaces/RouterParamTypes';
+import {goBack, replace} from 'cpackages/cnavigator';
+import {goForward} from '../../../cpackages/cnavigator';
 
-class Login extends Component {
+class Login extends Component<RouterProps> {
   state = {
     email: undefined,
     password: undefined,
@@ -25,6 +30,10 @@ class Login extends Component {
 
   onChangePassword = (event: ChangeEvent<HTMLInputElement>) => {
     this.onChangeHandler('password', event);
+  };
+
+  onClickLogin = () => {
+    replace(this, 'register');
   };
 
   render(): ReactNode {
@@ -47,11 +56,14 @@ class Login extends Component {
             />
             <div className={styles.actionsContainer}>
               <AnchorButton
-                text="Forgot password"
+                text={<FormattedMessage id="string.forgot_password" />}
                 link="https://www.google.com"
                 onClick={() => {}}
               />
-              <CButton text="Login" />
+              <CButton
+                onClick={this.onClickLogin}
+                text={<FormattedMessage id="string.login" />}
+              />
             </div>
           </Col>
         </Row>
@@ -60,4 +72,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default withRouter(Login);

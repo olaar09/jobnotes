@@ -1,9 +1,5 @@
-import {Row, Col, Menu, Skeleton} from 'antd';
-import {MenuButton} from '_components/Buttons/MenuButton/MenuButton';
-import {DropdownBtn} from '_components/Buttons/MenuButton/DropdownBtn';
+import {Skeleton} from 'antd';
 import React from 'react';
-import {cssmodulejoin} from 'cssmodulejoin';
-import styles from './Header.module.scss';
 import {List, Avatar, Icon, Button} from 'antd';
 
 const listData: any = [];
@@ -33,11 +29,12 @@ interface JobItem {
   content: string;
   href: string;
   loading: boolean;
+  default: any;
 }
 
 interface JobViewProps {}
 
-export class JobView extends React.Component<JobViewProps> {
+export default class JobView extends React.Component<JobViewProps> {
   render() {
     const loadMore = (
       <div

@@ -4,6 +4,7 @@ import {DropdownBtn} from '_components/Buttons/MenuButton/DropdownBtn';
 import React from 'react';
 import {cssmodulejoin} from 'cssmodulejoin';
 import styles from './Header.module.scss';
+import {FormattedMessage} from 'react-intl';
 
 interface HeaderProps {
   onEditProfile: (event: any) => void;
@@ -34,12 +35,22 @@ export const Header = (props: HeaderProps) => {
           <MenuButton
             onClick={props.onEditProfile}
             icon="edit"
-            text="Edit profile"
+            text={
+              <FormattedMessage
+                defaultMessage="Edit profile"
+                id="header.menu.editprofile"
+              />
+            }
           />
           <MenuButton
             onClick={props.onAddNewJob}
             icon="plus"
-            text="New Application"
+            text={
+              <FormattedMessage
+                defaultMessage="New Application"
+                id="header.menu.newapplicstion"
+              />
+            }
           />
         </Col>
 

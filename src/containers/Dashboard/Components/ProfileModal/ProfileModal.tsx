@@ -1,9 +1,8 @@
 import {Row, Col, Menu} from 'antd';
-import {MenuButton} from '_components/Buttons/MenuButton/MenuButton';
-import {DropdownBtn} from '_components/Buttons/MenuButton/DropdownBtn';
 import React from 'react';
 import {cssmodulejoin} from 'cssmodulejoin';
 import {FullScreenModal} from '_components/Modals/FullScreen/FullscreenModal';
+import {FormattedMessage} from 'react-intl';
 
 interface ProfileModal {
   modalVisible: boolean;
@@ -15,7 +14,12 @@ export const ProfileModal = (props: ProfileModal) => {
     <FullScreenModal
       visible={props.modalVisible}
       handleCancel={props.hideModal}
-      title="Your Profile"
+      title={
+        <FormattedMessage
+          id="profileModal.title"
+          defaultMessage="Your profile"
+        />
+      }
     >
       <h1>Hello</h1>
     </FullScreenModal>

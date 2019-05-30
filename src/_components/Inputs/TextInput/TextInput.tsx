@@ -1,6 +1,7 @@
 import React, {ChangeEvent, FocusEvent} from 'react';
 import {Input} from 'antd';
 import styles from './TextInput.module.scss';
+import {WithFortmattedName} from 'interfaces/PropTypesInterface';
 
 interface InputParams {
   placeholder: string;

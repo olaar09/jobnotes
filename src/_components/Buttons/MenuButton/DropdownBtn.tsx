@@ -1,9 +1,10 @@
 import React, {ComponentElement} from 'react';
 import {Input, Select, Icon, Button, Dropdown, Menu} from 'antd';
 import styles from './MenuButton.module.scss';
+import {FormattedMessage} from 'react-intl';
+import {WithFortmattedText} from '../../../interfaces/PropTypesInterface';
 
-interface PropTypes {
-  text: string;
+interface PropTypes extends WithFortmattedText {
   icon: string;
   menu: ComponentElement<Menu, any>;
 }

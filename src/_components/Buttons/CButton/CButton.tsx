@@ -1,14 +1,19 @@
 import React from 'react';
-import {Input, Select, Icon, Button} from 'antd';
+import {Button} from 'antd';
 import styles from './CButton.module.scss';
-interface PropTypes {
-  text: string;
+import {WithFortmattedText} from 'interfaces/PropTypesInterface';
+
+interface PropTypes extends WithFortmattedText {
+  onClick: () => void;
 }
 
 export const CButton = (props: PropTypes) => {
   return (
     <div>
-      <Button className={styles.button}> {props.text} </Button>
+      <Button onClick={props.onClick} className={styles.button}>
+        {' '}
+        {props.text}{' '}
+      </Button>
     </div>
   );
 };

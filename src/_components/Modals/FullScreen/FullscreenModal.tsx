@@ -1,12 +1,13 @@
 import {Modal} from 'antd';
 import React, {ReactNode} from 'react';
 import './FullScreen.module.scss';
+import {FormattedMessage} from 'react-intl';
 
 interface FullscreenModal {
   handleOk?: () => void;
   visible: boolean;
   handleCancel: () => void;
-  title: string;
+  title: React.ReactElement;
   children: ReactNode;
 }
 

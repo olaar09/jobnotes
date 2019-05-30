@@ -4,6 +4,7 @@ import {DropdownBtn} from '_components/Buttons/MenuButton/DropdownBtn';
 import React from 'react';
 import {cssmodulejoin} from 'cssmodulejoin';
 import {FullScreenModal} from '_components/Modals/FullScreen/FullscreenModal';
+import {FormattedMessage} from 'react-intl';
 
 interface JobModalProps {
   modalVisible: boolean;
@@ -15,7 +16,7 @@ export const JobModal = (props: JobModalProps) => {
     <FullScreenModal
       visible={props.modalVisible}
       handleCancel={props.hideModal}
-      title="Add New Job"
+      title={<FormattedMessage id="string.addnewjob" />}
     >
       <h1>Hello</h1>
     </FullScreenModal>

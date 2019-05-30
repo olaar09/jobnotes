@@ -1,13 +1,20 @@
-import React, {Component, ReactNode, ChangeEvent} from 'react';
+import React, {Component, ReactNode, ChangeEvent, Suspense} from 'react';
 import {DashboardLayout} from '_components/layouts/DashboardLayout/DashboardLayout';
-import {Header} from './Components/Header/Header';
 import {
   onChangeModalVisibility,
   onChangeInputHandler,
 } from 'cpackages/OnChangeHandler';
-import {JobView} from './Components/JobView/JobView';
+import {Spin} from 'antd';
+import {Redirect, withRouter, RouteComponentProps} from 'react-router';
 
-class Dashboard extends Component {
+type PathParamsType = {
+  history: string;
+};
+
+// Your component own properties
+type PropsType = RouteComponentProps<PathParamsType> & {};
+
+class Dashboard extends Component<PropsType> {
   state = {
     profileModalVisible: false,
     jobModalVisible: false,
@@ -38,9 +45,12 @@ class Dashboard extends Component {
   };
 
   render(): ReactNode {
-    console.log();
     let {profileModalVisible, jobModalVisible} = this.state;
-    return (
+    const JobView = React.lazy(() => import('./Components/JobView/JobView'));
+
+    return true ? (
+      <Redirect to="/login" />
+    ) : (
       <DashboardLayout
         hideProfileModal={this.hideProfileModal}
         hideJobModal={this.hideJobModal}
@@ -49,10 +59,24 @@ class Dashboard extends Component {
         profileModalVisible={profileModalVisible}
         jobModalVisible={jobModalVisible}
       >
-        <JobView />
+        <Suspense
+          fallback={
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              <Spin />
+            </div>
+          }
+        >
+          <JobView />
+        </Suspense>
       </DashboardLayout>
     );
   }
 }
 
-export default Dashboard;
+export default withRouter(Dashboard);
