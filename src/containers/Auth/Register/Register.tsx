@@ -25,6 +25,7 @@ class Register extends Component<RegisterProps> {
     password: '',
     phone: '',
     fullname: '',
+    cpassword: '',
   };
 
   onChangeHandler = (field: string, event: ChangeEvent<HTMLInputElement>) => {
@@ -41,27 +42,41 @@ class Register extends Component<RegisterProps> {
     this.onChangeHandler('password', event);
   };
 
+  onChangeConfirmPassword = (event: ChangeEvent<HTMLInputElement>) => {
+    this.onChangeHandler('cpassword', event);
+  };
+
+  onChangeFullname = (event: ChangeEvent<HTMLInputElement>) => {
+    this.onChangeHandler('fullname', event);
+  };
+
   onReg = () => {
-    let {email, password, phone, fullname} = this.state;
+    let {email, password, fullname} = this.state;
     this.props.doRegister({
       email,
       password,
-      phone,
       fullname,
     });
   };
 
   render(): ReactNode {
-    const {email, password} = this.state;
+    const {email, password, cpassword, fullname} = this.state;
+    console.log(this.props.userData);
     return (
       <AuthLayout title="Register New Account">
         <Row>
           <Col>
             <TextInput
-              type={INPUT_TYPES.TEXT}
+              type={INPUT_TYPES.EMAIL}
               value={email}
               placeholder="Enter your email"
               onChange={this.onChangeEmail}
+            />
+            <TextInput
+              type={INPUT_TYPES.TEXT}
+              value={fullname}
+              placeholder="Enter your fullname"
+              onChange={this.onChangeFullname}
             />
             <TextInput
               type={INPUT_TYPES.PASSWORD}
@@ -71,14 +86,14 @@ class Register extends Component<RegisterProps> {
             />
             <TextInput
               type={INPUT_TYPES.PASSWORD}
-              value={password}
+              value={cpassword}
               placeholder="Confirm password"
-              onChange={this.onChangePassword}
+              onChange={this.onChangeConfirmPassword}
             />
             <div className={styles.actionsContainer}>
               <AnchorButton
-                text={<FormattedMessage id="string.forgot_password" />}
-                link="https://www.google.com"
+                text={<FormattedMessage id="string.login_instead" />}
+                link="login"
                 onClick={() => {}}
               />
               <CButton

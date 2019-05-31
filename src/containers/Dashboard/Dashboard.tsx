@@ -6,15 +6,17 @@ import {
 } from 'cpackages/OnChangeHandler';
 import {Spin} from 'antd';
 import {Redirect, withRouter, RouteComponentProps} from 'react-router';
+import {isAuthenticated} from 'cpackages/utils';
+import {initializeGetUserReq} from 'store/auth/authActions';
+import {RouterProps} from 'interfaces/RouterParamTypes';
+import {connect} from 'react-redux';
 
-type PathParamsType = {
-  history: string;
-};
+interface DashboardProps extends RouterProps {
+  getUser: () => any;
+  userData: any;
+}
 
-// Your component own properties
-type PropsType = RouteComponentProps<PathParamsType> & {};
-
-class Dashboard extends Component<PropsType> {
+class Dashboard extends Component<DashboardProps> {
   state = {
     profileModalVisible: false,
     jobModalVisible: false,
@@ -44,11 +46,18 @@ class Dashboard extends Component<PropsType> {
     onChangeInputHandler('password', event, this);
   };
 
+  componentDidMount() {
+    this.props.getUser();
+  }
+
   render(): ReactNode {
     let {profileModalVisible, jobModalVisible} = this.state;
     const JobView = React.lazy(() => import('./Components/JobView/JobView'));
 
-    return true ? (
+    console.log(this.props.userData);
+
+    const isAuth: boolean = isAuthenticated();
+    return !isAuth ? (
       <Redirect to="/login" />
     ) : (
       <DashboardLayout
@@ -79,4 +88,21 @@ class Dashboard extends Component<PropsType> {
   }
 }
 
-export default withRouter(Dashboard);
+const mapStateToProps = (state: any) => {
+  return {
+    userData: state.auth,
+  };
+};
+
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    getUser: () => dispatch(initializeGetUserReq()),
+  };
+};
+
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(Dashboard)
+);

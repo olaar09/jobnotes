@@ -7,7 +7,14 @@ export interface ILoginData extends User {}
 
 export interface IRegisterData extends User {
   fullname: string;
-  phone: string;
+}
+
+export interface IAuthUser extends User {
+  fullname: string;
+  token: string;
+  authToken: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface IReduxAction<T> {
@@ -19,6 +26,7 @@ export interface TransformedResponse {
   status: string;
   data?: string | Object;
   reason?: string | Object;
+  validationErr?: Object;
 }
 
 export interface NetworkData<T> {

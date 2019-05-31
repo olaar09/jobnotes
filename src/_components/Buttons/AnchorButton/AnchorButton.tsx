@@ -12,10 +12,10 @@ interface PropTypes extends WithFortmattedText {
 export const AnchorButton = (props: PropTypes) => {
   return (
     <div>
-      <a onClick={props.onClick} className={styles.link}>
-        {' '}ƒ
+      <Link to={props.link} onClick={props.onClick} className={styles.link}>
+        {' '}
         {props.text}{' '}
-      </a>
+      </Link>
     </div>
   );
 };

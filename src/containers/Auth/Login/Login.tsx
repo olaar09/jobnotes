@@ -7,13 +7,15 @@ import INPUT_TYPES from 'html-inputtypes';
 import {AnchorButton} from '_components/Buttons/AnchorButton/AnchorButton';
 import styles from '../auth.module.scss';
 import {FormattedMessage} from 'react-intl';
-import {withRouter} from 'react-router';
+import {withRouter, Redirect} from 'react-router';
 import {RouterProps} from 'interfaces/RouterParamTypes';
 import {goBack, replace} from 'cpackages/cnavigator';
 import {goForward} from '../../../cpackages/cnavigator';
 import {connect} from 'react-redux';
 import {ILoginData} from 'interfaces/MultiUseTypes';
 import {initializeLogin} from 'store/auth/authActions';
+import {isAuthenticated} from 'cpackages/utils';
+import {getAuthUser} from '../../../cpackages/utils';
 
 interface IloginState extends ILoginData {
   emailValidationError: string | undefined;
@@ -57,9 +59,11 @@ class Login extends Component<LoginProps> {
 
   render(): ReactNode {
     const {email, password} = this.state;
-    console.log(this.props.userData);
+    const isAuth: boolean = isAuthenticated();
 
-    return (
+    return isAuth ? (
+      <Redirect to="/home" />
+    ) : (
       <AuthLayout title="Login">
         <Row>
           <Col>

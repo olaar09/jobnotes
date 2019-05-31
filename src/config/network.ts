@@ -15,9 +15,19 @@ export const routes = {
     method: METHOD_TYPE_POST,
     isProtected: false,
   },
+  getUser: {
+    url: '/user/me',
+    method: 'PUT',
+    isProtected: true,
+  },
   viewJobs: {
     url: '/jobs',
     method: 'GET',
+    isProtected: true,
+  },
+  updateJob: {
+    url: '/jobs',
+    method: 'PUT',
     isProtected: true,
   },
   addJob: {

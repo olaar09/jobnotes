@@ -11,10 +11,13 @@ import {
   METHOD_TYPE_DELETE,
 } from '../config/network';
 import {TransformedResponse} from 'interfaces/MultiUseTypes';
+import {getAuthUser} from 'cpackages/utils';
 
 //import {getToken} from '../database/auth';
+import {IAuthUser} from 'interfaces/MultiUseTypes';
 
 const NETWORK_STATUS_FAIL = 'failed';
+const NETWORK_STATUS_BAD_REQUEST = 'bad_request';
 const NETWORK_STATUS_SUCCESS = 'success';
 
 const NETWORK_RESPONSE_GENERIC_MESSAGE_SUCCESS = 'Request was successful';
@@ -67,10 +70,18 @@ const transformResponse = (response: any): TransformedResponse => {
       };
     }
 
+    if (response.statusCode == 400 && response.reason) {
+      console.log(response.reason);
+      return {
+        status: NETWORK_STATUS_BAD_REQUEST,
+        validationErr: response.reason,
+      };
+    }
+
     if (response.statusCode > 299 && response.reason) {
       console.log(response.reason);
       return {
-        status: response.NETWORK_STATUS_FAIL,
+        status: NETWORK_STATUS_FAIL,
         data: response.reason,
       };
     }
@@ -90,8 +101,18 @@ const transformResponse = (response: any): TransformedResponse => {
 const transformAxiosError = (error: any) => {
   let reason = NETWORK_RESPONSE_GENERIC_MESSAGE_FAIL;
 
+  console.log(error);
+
   if (error.message == 'Network Error') {
     reason = NETWORK_RESPONSE_GENERIC_MESSAGE_FAIL;
+  } else if (error.response && error.response.status === 400) {
+    return {
+      status: NETWORK_STATUS_BAD_REQUEST,
+      reason:
+        error.response.data && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    };
   } else if (
     error.response &&
     error.response.data &&
@@ -118,8 +139,13 @@ export const makeRequest = async (
   let response = null;
 
   try {
+    const authUser: IAuthUser | null = getAuthUser();
+    let authToken = null;
+    if (authUser) {
+      authToken = authUser.authToken;
+    }
     if (routeInfo.isProtected) {
-      axios.defaults.headers = {Authorization: 'Bearer' + ''};
+      axios.defaults.headers = {Authorization: 'Bearer ' + authToken};
     }
     if (routeInfo.method == METHOD_TYPE_POST) {
       response = await axios.post(routeInfo.url, {...routeInfo.data});
@@ -136,9 +162,8 @@ export const makeRequest = async (
       if (routeInfo.appendPath) {
         routeInfo.data = routeInfo.data.coord;
       }
-      response = await axios.get(routeInfo.url, {
-        params: routeInfo.data,
-      });
+
+      response = await axios.get(routeInfo.url);
     } else if (routeInfo.method == METHOD_TYPE_PUT) {
       response = await axios.get(routeInfo.url, {...routeInfo.data});
     } else if (routeInfo.method == METHOD_TYPE_DELETE) {
