@@ -10,6 +10,7 @@ import {
   METHOD_TYPE_PUT,
   METHOD_TYPE_DELETE,
 } from '../config/network';
+import {TransformedResponse} from 'interfaces/MultiUseTypes';
 
 //import {getToken} from '../database/auth';
 
@@ -52,25 +53,21 @@ axios.interceptors.response.use(
 * - If any of the above fails, this function returns a failed status, and a generic reason
 
  */
-const transformResponse = (
-  response: any
-): {status: string; reason?: any; data?: any} => {
+const transformResponse = (response: any): TransformedResponse => {
   if (response.status) {
     // response was successfull and there is a data
-    if ((response.status = NETWORK_STATUS_SUCCESS && response.data)) {
-      console.log(
-        '============= Returning transformed data, response was successfull and there is a data ============ '
-      );
+    if (
+      response.statusCode >= 200 &&
+      response.statusCode < 299 &&
+      response.data
+    ) {
       return {
         status: NETWORK_STATUS_SUCCESS,
         data: response.data,
       };
     }
 
-    if ((response.status = NETWORK_STATUS_FAIL && response.reason)) {
-      console.log(
-        '============= Returning transformed data, response was not successful  ============ '
-      );
+    if (response.statusCode > 299 && response.reason) {
       console.log(response.reason);
       return {
         status: response.NETWORK_STATUS_FAIL,
@@ -109,18 +106,15 @@ const transformAxiosError = (error: any) => {
     reason = error.response.data.message;
   }
 
-  console.log('====================================');
-  console.log(error);
-  console.log(reason);
-  console.log('====================================');
-
   return {
     status: NETWORK_STATUS_FAIL,
     reason: reason,
   };
 };
 
-export const makeRequest = async (routeInfo: any) => {
+export const makeRequest = async (
+  routeInfo: any
+): Promise<TransformedResponse> => {
   let response = null;
 
   try {
@@ -139,10 +133,6 @@ export const makeRequest = async (routeInfo: any) => {
         routeInfo.url = routeInfo.url + '/' + routeInfo.data.path;
       }
 
-      console.log('path param');
-      console.log(routeInfo.url);
-      console.log(routeInfo.data);
-
       if (routeInfo.appendPath) {
         routeInfo.data = routeInfo.data.coord;
       }
@@ -157,12 +147,8 @@ export const makeRequest = async (routeInfo: any) => {
       throw new Error('**code generated Invalid http verb type**');
     }
 
-    console.log('============= Network call Success response ============ ');
-    console.log(response.data);
     return transformResponse(response.data);
   } catch (error) {
-    console.log('============= Network call Failed response ============ ');
-    console.log(error);
     return transformAxiosError(error);
   }
 };
