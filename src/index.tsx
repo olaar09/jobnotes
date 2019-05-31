@@ -7,12 +7,19 @@ import Dashboard from 'containers/Dashboard/Dashboard';
 import {IntlProvider} from 'react-intl';
 import {BrowserRouter} from 'react-router-dom';
 import App from 'App';
+import {Provider} from 'react-redux';
+import configureStore, {sagaMiddleware, rootSaga} from './store/configureStore';
+
+const store = configureStore();
+sagaMiddleware.run(rootSaga, null);
 
 ReactDOM.render(
   <IntlProvider>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </Provider>
   </IntlProvider>,
   document.getElementById('root')
 );

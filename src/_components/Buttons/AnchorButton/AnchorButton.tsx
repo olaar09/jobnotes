@@ -3,6 +3,7 @@ import {Input, Select, Icon, Button} from 'antd';
 import styles from './AnchorButton.module.scss';
 import {FormattedMessage} from 'react-intl';
 import {WithFortmattedText} from 'interfaces/PropTypesInterface';
+import {NavLink, Link} from 'react-router-dom';
 
 interface PropTypes extends WithFortmattedText {
   link: string;
@@ -11,8 +12,8 @@ interface PropTypes extends WithFortmattedText {
 export const AnchorButton = (props: PropTypes) => {
   return (
     <div>
-      <a href={props.link} onClick={props.onClick} className={styles.link}>
-        {' '}
+      <a onClick={props.onClick} className={styles.link}>
+        {' '}ƒ
         {props.text}{' '}
       </a>
     </div>

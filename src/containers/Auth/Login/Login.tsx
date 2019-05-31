@@ -11,11 +11,25 @@ import {withRouter} from 'react-router';
 import {RouterProps} from 'interfaces/RouterParamTypes';
 import {goBack, replace} from 'cpackages/cnavigator';
 import {goForward} from '../../../cpackages/cnavigator';
+import {connect} from 'react-redux';
+import {ILoginData} from 'interfaces/MultiUseTypes';
+import {initializeLogin} from 'store/auth/authActions';
 
-class Login extends Component<RouterProps> {
-  state = {
-    email: undefined,
-    password: undefined,
+interface IloginState extends ILoginData {
+  emailValidationError: string | undefined;
+  passwordValidationError: string | undefined;
+}
+
+interface LoginProps extends RouterProps {
+  doLogin: (payload: ILoginData) => any;
+}
+
+class Login extends Component<LoginProps> {
+  state: IloginState = {
+    email: '',
+    password: '',
+    emailValidationError: undefined,
+    passwordValidationError: undefined,
   };
 
   onChangeHandler = (field: string, event: ChangeEvent<HTMLInputElement>) => {
@@ -33,7 +47,11 @@ class Login extends Component<RouterProps> {
   };
 
   onClickLogin = () => {
-    replace(this, 'register');
+    let {email, password} = this.state;
+    this.props.doLogin({
+      email,
+      password,
+    });
   };
 
   render(): ReactNode {
@@ -72,4 +90,21 @@ class Login extends Component<RouterProps> {
   }
 }
 
-export default withRouter(Login);
+const mapStateToProps = (state: any) => {
+  return {
+    userData: state.auth,
+  };
+};
+
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    doLogin: (loginData: ILoginData) => dispatch(initializeLogin(loginData)),
+  };
+};
+
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(Login)
+);
