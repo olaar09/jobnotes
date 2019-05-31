@@ -1,4 +1,8 @@
-import {ILoginData, IReduxAction} from 'interfaces/MultiUseTypes';
+import {
+  ILoginData,
+  IReduxAction,
+  IRegisterData,
+} from 'interfaces/MultiUseTypes';
 
 /**
  * Add flow
@@ -60,7 +64,9 @@ export const loginRequestFailed = (payload: any) => {
   };
 };
 
-export const initializeReg = (payload: any) => {
+export const initializeRegister = (
+  payload: IRegisterData
+): IReduxAction<IRegisterData> => {
   return {
     type: INITIALIZE_REG_REQUEST,
     payload,

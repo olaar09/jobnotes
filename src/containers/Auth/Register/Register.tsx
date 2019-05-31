@@ -10,11 +10,21 @@ import {FormattedMessage} from 'react-intl';
 import {withRouter} from 'react-router';
 import {RouterProps} from 'interfaces/RouterParamTypes';
 import {goForward} from 'cpackages/cnavigator';
+import {IRegisterData} from 'interfaces/MultiUseTypes';
+import {initializeRegister} from 'store/auth/authActions';
+import {connect} from 'react-redux';
 
-class Register extends Component<RouterProps> {
+interface RegisterProps extends RouterProps {
+  doRegister: (payload: IRegisterData) => any;
+  userData: any;
+}
+
+class Register extends Component<RegisterProps> {
   state = {
-    email: undefined,
-    password: undefined,
+    email: '',
+    password: '',
+    phone: '',
+    fullname: '',
   };
 
   onChangeHandler = (field: string, event: ChangeEvent<HTMLInputElement>) => {
@@ -32,7 +42,13 @@ class Register extends Component<RouterProps> {
   };
 
   onReg = () => {
-    goForward(this, 'home');
+    let {email, password, phone, fullname} = this.state;
+    this.props.doRegister({
+      email,
+      password,
+      phone,
+      fullname,
+    });
   };
 
   render(): ReactNode {
@@ -77,4 +93,22 @@ class Register extends Component<RouterProps> {
   }
 }
 
-export default withRouter(Register);
+const mapStateToProps = (state: any) => {
+  return {
+    userData: state.auth,
+  };
+};
+
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    doRegister: (registerData: IRegisterData) =>
+      dispatch(initializeRegister(registerData)),
+  };
+};
+
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(Register)
+);

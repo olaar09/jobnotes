@@ -11,13 +11,18 @@ export const routes = {
     isProtected: false,
   },
   register: {
-    url: '/register',
+    url: 'authentication/register',
     method: METHOD_TYPE_POST,
     isProtected: false,
   },
   viewJobs: {
     url: '/jobs',
     method: 'GET',
+    isProtected: true,
+  },
+  addJob: {
+    url: '/jobs',
+    method: 'POST',
     isProtected: true,
   },
 };

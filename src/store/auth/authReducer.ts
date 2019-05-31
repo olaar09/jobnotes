@@ -35,7 +35,22 @@ const authReducer = (
     case LOGIN_REQUEST_INIT:
       return {
         ...state,
+        loggedIn: false,
         authLoading: true,
+      };
+    case LOGIN_REQUEST_SUCCESS:
+      return {
+        ...state,
+        authLoading: false,
+        authErrReason: false,
+        loggedIn: true,
+        ...action.payload,
+      };
+    case LOGIN_REQUEST_FAILED:
+      return {
+        ...state,
+        authLoading: false,
+        authErrReason: action.payload,
       };
     default:
       return state;

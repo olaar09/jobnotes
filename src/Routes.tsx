@@ -4,7 +4,7 @@ import Dashboard from 'containers/Dashboard/Dashboard';
 import Login from 'containers/Auth/Login/Login';
 import Register from 'containers/Auth/Register/Register';
 
-export default class App extends Component {
+export default class Routes extends Component {
   render() {
     return (
       <Switch>

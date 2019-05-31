@@ -22,6 +22,7 @@ interface IloginState extends ILoginData {
 
 interface LoginProps extends RouterProps {
   doLogin: (payload: ILoginData) => any;
+  userData: any;
 }
 
 class Login extends Component<LoginProps> {
@@ -56,6 +57,8 @@ class Login extends Component<LoginProps> {
 
   render(): ReactNode {
     const {email, password} = this.state;
+    console.log(this.props.userData);
+
     return (
       <AuthLayout title="Login">
         <Row>

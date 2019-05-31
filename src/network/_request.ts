@@ -54,7 +54,7 @@ axios.interceptors.response.use(
 
  */
 const transformResponse = (response: any): TransformedResponse => {
-  if (response.status) {
+  if (response.statusCode) {
     // response was successfull and there is a data
     if (
       response.statusCode >= 200 &&

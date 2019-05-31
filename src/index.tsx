@@ -6,7 +6,7 @@ import * as serviceWorker from './serviceWorker';
 import Dashboard from 'containers/Dashboard/Dashboard';
 import {IntlProvider} from 'react-intl';
 import {BrowserRouter} from 'react-router-dom';
-import App from 'App';
+import Routes from 'Routes';
 import {Provider} from 'react-redux';
 import configureStore, {sagaMiddleware, rootSaga} from './store/configureStore';
 
@@ -17,7 +17,7 @@ ReactDOM.render(
   <IntlProvider>
     <Provider store={store}>
       <BrowserRouter>
-        <App />
+        <Routes />
       </BrowserRouter>
     </Provider>
   </IntlProvider>,
