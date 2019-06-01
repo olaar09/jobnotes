@@ -7,12 +7,13 @@ import INPUT_TYPES from 'html-inputtypes';
 import styles from '../auth.module.scss';
 import {AnchorButton} from '_components/Buttons/AnchorButton/AnchorButton';
 import {FormattedMessage} from 'react-intl';
-import {withRouter} from 'react-router';
+import {withRouter, Redirect} from 'react-router';
 import {RouterProps} from 'interfaces/RouterParamTypes';
 import {goForward} from 'cpackages/cnavigator';
 import {IRegisterData} from 'interfaces/MultiUseTypes';
 import {initializeRegister} from 'store/auth/authActions';
 import {connect} from 'react-redux';
+import {isAuthenticated} from 'cpackages/utils';
 
 interface RegisterProps extends RouterProps {
   doRegister: (payload: IRegisterData) => any;
@@ -62,7 +63,11 @@ class Register extends Component<RegisterProps> {
   render(): ReactNode {
     const {email, password, cpassword, fullname} = this.state;
     console.log(this.props.userData);
-    return (
+    const isAuth: boolean = isAuthenticated();
+
+    return isAuth ? (
+      <Redirect to="/home" />
+    ) : (
       <AuthLayout title="Register New Account">
         <Row>
           <Col>
