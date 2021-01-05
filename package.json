@@ -11,7 +11,7 @@
     "@types/react-redux": "^7.0.9",
     "@types/react-router-dom": "^4.3.3",
     "antd": "^3.19.1",
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "cssmodulejoin": "^1.0.3",
     "html-inputtypes": "^1.0.0",
     "node-sass": "^4.12.0",
